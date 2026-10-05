@@ -1,1 +1,2 @@
-# Dependencies will be added as MIRA's technical stack is selected and tested.
+opencv-python
+mediapipe
