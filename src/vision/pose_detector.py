@@ -4,7 +4,7 @@ import mediapipe as mp
 from mediapipe.tasks import python
 from mediapipe.tasks.python import vision
 
-MODEL_PATH = "models/pose_landmarker_lite.task"
+MODEL_PATH = "models/pose_landmarker_full.task"
 
 def create_pose_landmarker():
     #configure the Mediapipe model
@@ -12,9 +12,11 @@ def create_pose_landmarker():
         model_asset_path =MODEL_PATH
     )
 
-    options = vision.PoseLandmarkerOptions (
+    options = vision.PoseLandmarkerOptions(
         base_options=base_options, 
-        running_mode = vision.RunningMode.VIDEO
+        running_mode = vision.RunningMode.VIDEO,
+        min_pose_detection_confidence = 0.7,
+        min_tracking_confidence = 0.7
     )
     # Create and return the pose landmarker
     return vision.PoseLandmarker.create_from_options(options)
